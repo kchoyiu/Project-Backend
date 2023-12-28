@@ -1,5 +1,6 @@
 package com.fsse2309.project_backend.api;
 
+import com.fsse2309.project_backend.config.EnvConfig;
 import com.fsse2309.project_backend.dto.SuccessResponseDto;
 import com.fsse2309.project_backend.dto.TransactionResponseDto;
 import com.fsse2309.project_backend.repository.TransactionRepository;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/transaction")
+@CrossOrigin({EnvConfig.devEnvBaseUrl,EnvConfig.prodEnvBaseUrl})
 public class TransactionApi {
     private TransactionService transactionService;
     private CartItemService cartItemService;
@@ -20,7 +22,7 @@ public class TransactionApi {
         this.transactionService=transactionService;
         this.cartItemService=cartItemService;
     }
-    @PostMapping("/perpare")
+    @PostMapping("/prepare")
     public TransactionResponseDto prepareTransaction(JwtAuthenticationToken jwt){
         return new TransactionResponseDto(
                 transactionService.prepareTransaction(JwtUtil.getFirebaseUser(jwt))

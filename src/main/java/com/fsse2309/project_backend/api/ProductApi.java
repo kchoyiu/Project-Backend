@@ -1,5 +1,6 @@
 package com.fsse2309.project_backend.api;
 
+import com.fsse2309.project_backend.config.EnvConfig;
 import com.fsse2309.project_backend.data.product.domainObject.CreateProduct;
 import com.fsse2309.project_backend.data.product.domainObject.Product;
 import com.fsse2309.project_backend.data.product.entity.ProductEntity;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/public/product")
-@CrossOrigin("http://localhost:5173")
+@CrossOrigin({EnvConfig.devEnvBaseUrl,EnvConfig.prodEnvBaseUrl})
 public class ProductApi {
 
     private ProductService productService;
